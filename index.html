@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kenalan Yuk!</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    .container {
+      text-align: center;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+    #whatsapp-link {
+      display: none;
+      margin-top: 20px;
+    }
+    a {
+      text-decoration: none;
+      color: white;
+      background-color: #25D366;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 18px;
+    }
+    #password-container {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Assalamualaikum</h2>
+
+    <div id="password-container">
+      <p>Masukkan Password:</p>
+      <input type="password" id="passwordInput" placeholder="Password..." />
+      <br>
+      <button id="verifyPasswordBtn">Verifikasi</button>
+      <div id="passwordMessage" style="color: red;"></div>
+    </div>
+
+    <div id="content-container" style="display: none;">
+      <p>Masukkan namamu:</p>
+      <input type="text" id="nameInput" placeholder="Nama kamu..." />
+      <br>
+      <button id="kenalanBtn">Lanjutkan !</button>
+      <div id="message"></div>
+      <div id="whatsapp-link">
+        <a href="" target="_blank" id="whatsappButton">Hubungi saya di WhatsApp</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Password yang valid (setel password sesuai keinginan Anda)
+    const correctPassword = "admin345"; // Ganti dengan password Anda
+
+    document.getElementById("verifyPasswordBtn").addEventListener("click", function() {
+      const inputPassword = document.getElementById("passwordInput").value;
+
+      if (inputPassword === correctPassword) {
+        // Jika password benar, sembunyikan input password dan tampilkan konten
+        document.getElementById("password-container").style.display = "none";
+        document.getElementById("content-container").style.display = "block";
+      } else {
+        // Jika salah, tampilkan pesan kesalahan
+        document.getElementById("passwordMessage").textContent = "Password salah. Coba lagi.";
+      }
+    });
+
+    document.getElementById("kenalanBtn").addEventListener("click", function() {
+      const name = document.getElementById("nameInput").value;
+
+      if (name === "") {
+        document.getElementById("message").textContent = "Jangan malu, tulis namamu dulu!";
+      } else {
+        document.getElementById("message").textContent = `Hai ${name}, senang berkenalan denganmu! Nama saya Muhammad Rifqi Alfadillah. Saya berasal dari bogor`;
+        document.getElementById("whatsapp-link").style.display = "block";
+        
+        const whatsappNumber = "6285882792665";  // Ganti dengan nomor WhatsApp kamu
+        const message = `Hai ${name}, senang berkenalan!`;
+        const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+        document.getElementById("whatsappButton").href = whatsappLink;
+      }
+    });
+  </script>
+
+</body>
+</html>
